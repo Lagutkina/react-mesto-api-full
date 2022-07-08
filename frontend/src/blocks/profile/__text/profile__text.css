@@ -1,0 +1,10 @@
+.profile__text {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width:921px) {
+  .profile__text {
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,17 @@
+.entry__input {
+  width: 358px;
+  height: 27px;
+  border-style: hidden;
+  border-bottom: 2px solid #CCCCCC;
+  background-color: transparent;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #CCCCCC;
+  margin-top: 30px;
+}
+
+.entry__input:first-of-type {
+  margin-top: 0;
+}

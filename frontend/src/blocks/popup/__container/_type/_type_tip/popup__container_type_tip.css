@@ -1,0 +1,17 @@
+.popup__container_type_tip {
+  width: 282px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  color: #000;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width:768px) {
+  .popup__container_type_tip {
+    width: 430px;
+  }
+}

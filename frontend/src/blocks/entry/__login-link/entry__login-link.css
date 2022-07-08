@@ -1,0 +1,15 @@
+.entry__login-link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 15px;
+  text-decoration: none;
+}
+
+.entry__login-link:hover {
+  cursor: pointer;
+  opacity: .6;
+}

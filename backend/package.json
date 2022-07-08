@@ -1,0 +1,46 @@
+{
+  "name": "express-mesto-gha",
+  "version": "1.0.0",
+  "description": "back and front ",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "mesto"
+  ],
+  "author": "lagutkina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lagutkina/express-mesto-gha/issues"
+  },
+  "homepage": "https://github.com/Lagutkina/express-mesto-gha#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "celebrate": "^15.0.1",
+    "express": "^4.18.1",
+    "express-winston": "^4.2.0",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.8",
+    "validator": "^13.7.0",
+    "winston": "^3.8.1"
+  }
+}

@@ -1,0 +1,13 @@
+.header__mainplank {
+  display: flex;
+}
+
+.header__email {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height, or 122% */
+  text-align: right;
+  color: #FFFFFF;
+  margin: 5px 24px 0px 0px;
+}

@@ -1,0 +1,7 @@
+.entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  height: 55vh;
+}

@@ -1,0 +1,14 @@
+.header__button {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height, or 122% */
+  margin-top: 5px;
+  text-align: right;
+  color: #FFFFFF;
+}
+
+.header__button:hover {
+  cursor: pointer;
+  opacity: .6;
+}
