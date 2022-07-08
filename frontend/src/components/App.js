@@ -290,22 +290,3 @@ function App() {
 }
 
 export default App;
-
-
-
-const server = http.createServer((req, res) => {
-  const dataPath = path.join(__dirname, 'data.json')
-  fs.readFile(dataPath, {encoding:'utf8'}, (err,data)=> {
-    if (err) {console.log(err)}
-    
-    return   {res.writeHead(200, {
-    'Content-Type': 'text/html'
-  });
-
-  const markup = generateMainView([]);
-
-  res.end(markup)
-  }
-
-})}
-)
