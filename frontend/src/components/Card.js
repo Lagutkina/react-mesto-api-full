@@ -11,7 +11,7 @@ function Card(props) {
     props.onCardClick(props.card);
   }
   //делаем кнопку удаления на собственных карточках (сравниваем айди)
-  const isOwn = props.card.owner._id === currentUser._id;
+  const isOwn = props.card.owner === currentUser._id;
   const cardDeleteButtonClassName = `${
     isOwn ? 'elements__delete' : 'elements__delete_hidden'
   }`;
@@ -21,7 +21,8 @@ function Card(props) {
   }
   //лайки крутятся
   //сверяем айди
-  const isLiked = props.card.likes.some((like) => like._id === currentUser._id);
+  console.log(currentUser, props.card.owner, isOwn);
+  const isLiked = props.card.likes.some((like) => like === currentUser._id);
   //делаем смену класса для иконки
   const cardLikeButtonClassName = `elements__like-icon ${
     isLiked ? 'elements__like-icon_liked' : ''

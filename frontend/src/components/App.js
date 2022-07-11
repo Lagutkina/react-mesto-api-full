@@ -61,7 +61,7 @@ function App() {
         .then((res) => {
           if (res) {
             createApi(token);
-            setCurrentEmail(res.data.email);
+            setCurrentEmail(res.email);
             setLoggedIn(true);
             history.push('/');
           }
@@ -87,7 +87,7 @@ function App() {
         .getInitialCards()
         .then((cardsFromServer) => {
           //забираем массив карточек чтобы вставить их в разметку, используя компонет Card (вставляет данные с карточек в разметку)
-
+          cardsFromServer.reverse(); //меняем порядок карточек
           setCards(cardsFromServer);
         })
         .catch((err) => {
@@ -159,7 +159,7 @@ function App() {
   // Лайки и дизлайки
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((like) => like._id === currentUser._id);
+    const isLiked = card.likes.some((like) => like === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api

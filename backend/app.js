@@ -16,7 +16,7 @@ const {
 } = require("./middlewares/validation");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 const app = express(); // заводим сервер
 
 mongoose.connect("mongodb://localhost:27017/mestodb"); // подключаемся к  БД
@@ -24,7 +24,7 @@ mongoose.connect("mongodb://localhost:27017/mestodb"); // подключаемс
 app.use(bodyParser.urlencoded({ extended: false })); // express понимает JSON запросы
 app.use(bodyParser.json()); // express понимает JSON запросы
 
-app.use(cors()); // cors миддлвара
+app.use(cors); // cors миддлвара
 app.use(requestLogger); // логер запросов
 app.post("/signin", loginValidation, login); // роут логина
 app.post("/signup", createUserValidation, createUser); // роут регистрации
