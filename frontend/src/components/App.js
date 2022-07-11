@@ -5,7 +5,7 @@ import Main from './Main';
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import ImagePopup from './ImagePopup';
-import { api } from '../utils/Api';
+import { Api } from '../utils/Api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -14,7 +14,7 @@ import Login from './Login';
 import { Switch } from 'react-router-dom';
 import Register from './Register';
 import ProtectedRoute from './ProtectedRoute';
-import { authorize, register, getMe } from '../utils/auth';
+import { authorize, register, getMe, BASE_URL } from '../utils/auth';
 import { useHistory } from 'react-router-dom';
 import InfoTooltip from './InfoTooltip';
 
@@ -37,14 +37,30 @@ function App() {
   const [status, setStatus] = useState('');
   //установка емейла для зареганного юзера
   const [currentEmail, setCurrentEmail] = useState('');
+  //устанавливаем токен
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  //instance api клиента
+  const [api, setApi] = useState(null);
 
+  //создаем апи каждый раз с новым токеном
+  function createApi(token) {
+    setApi(
+      new Api({
+        baseUrl: BASE_URL,
+        headers: {
+          authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+    );
+  }
   //ПРОВЕРКА ТОКЕНА И установка емейла при заходе
   useEffect(() => {
-    const token = localStorage.getItem('token');
     if (token) {
       getMe(token)
         .then((res) => {
           if (res) {
+            createApi(token);
             setCurrentEmail(res.data.email);
             setLoggedIn(true);
             history.push('/');
@@ -189,7 +205,9 @@ function App() {
   //авторизируемся зачем-то в апп а не в компоненте логин
   function handleAuthorize(email, password) {
     return authorize({ email, password })
-      .then(() => {
+      .then(({ token }) => {
+        setToken(token);
+        createApi(token);
         setCurrentEmail(email);
         setLoggedIn(true);
 
@@ -220,6 +238,8 @@ function App() {
   //LOG OUT
   function handleLogout() {
     localStorage.removeItem('token');
+    setApi(null);
+    setToken('');
     setLoggedIn(false);
     history.push('/sign-in');
   }

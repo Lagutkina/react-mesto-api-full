@@ -1,8 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
+
+console.log(process.env.NODE_ENV);
 const bodyParser = require("body-parser"); // JSON middelware
 const { errors } = require("celebrate");
 const auth = require("./middlewares/auth");
+const cors = require("./middlewares/cors");
 const users = require("./routes/users");
 const cards = require("./routes/cards");
 const { login, createUser } = require("./controllers/users");
@@ -20,6 +24,7 @@ mongoose.connect("mongodb://localhost:27017/mestodb"); // подключаемс
 app.use(bodyParser.urlencoded({ extended: false })); // express понимает JSON запросы
 app.use(bodyParser.json()); // express понимает JSON запросы
 
+app.use(cors()); // cors миддлвара
 app.use(requestLogger); // логер запросов
 app.post("/signin", loginValidation, login); // роут логина
 app.post("/signup", createUserValidation, createUser); // роут регистрации

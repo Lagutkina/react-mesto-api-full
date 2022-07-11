@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://lagutkina.nomorepartiesxyz.ru/api';
 
 export const register = ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -19,29 +19,24 @@ export const register = ({ email, password }) => {
 };
 
 export const authorize = ({ email, password }) => {
-  return (
-    fetch(`${BASE_URL}/signin`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
+  return fetch(`${BASE_URL}/signin`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  })
+    .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+    .then((data) => {
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+      return data;
     })
-      // .then((response) => {
-      //   return response.json();
-      // })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .then((data) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-        }
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-        throw err;
-      })
-  );
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
 };
 
 export const getMe = (token) => {

@@ -1,4 +1,4 @@
-class Api {
+export class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
@@ -52,10 +52,10 @@ class Api {
   }
 }
 
-export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
-  headers: {
-    authorization: '8a5e8d02-9c7a-4149-95f9-bcf44b03ae6a',
-    'Content-Type': 'application/json',
-  },
-});
+// export const api = new Api({
+//   baseUrl: 'https://lagutkina.nomorepartiesxyz.ru/api',
+//   headers: {
+//     authorization: '8a5e8d02-9c7a-4149-95f9-bcf44b03ae6a',
+//     'Content-Type': 'application/json',
+//   },
+// });
