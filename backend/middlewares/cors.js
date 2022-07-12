@@ -1,11 +1,5 @@
-const allowedCors = [
-  "https://lagutkina.nomorepartiesxyz.ru/",
-  "http://lagutkina.nomorepartiesxyz.ru/",
-  "lagutkina.nomorepartiesxyz.ru/",
-  "https://localhost:3000",
-  "http://localhost:3000",
-  "localhost:3000",
-];
+const { BASE_URL } = process.env; // добавляем адрес из среды
+const allowedCors = [BASE_URL, "http://localhost:3000"];
 
 // eslint-disable-next-line consistent-return
 module.exports = (req, res, next) => {
@@ -13,6 +7,7 @@ module.exports = (req, res, next) => {
   const { method } = req;
   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
   const requestHeaders = req.headers["access-control-request-headers"];
+
   if (allowedCors.includes(origin)) {
     // устанавливаем заголовок, который разрешает браузеру запросы с этого источника
     res.header("Access-Control-Allow-Origin", origin);

@@ -21,7 +21,6 @@ function Card(props) {
   }
   //лайки крутятся
   //сверяем айди
-  console.log(currentUser, props.card.owner, isOwn);
   const isLiked = props.card.likes.some((like) => like === currentUser._id);
   //делаем смену класса для иконки
   const cardLikeButtonClassName = `elements__like-icon ${

@@ -95,6 +95,7 @@ function App() {
         });
       history.push('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
   //функции переключения попапов на окрытие

@@ -1,5 +1,5 @@
-export const BASE_URL = 'https://lagutkina.nomorepartiesxyz.ru/api';
-// export const BASE_URL = 'http://localhost:3001';
+// export const BASE_URL = 'https://lagutkina.nomorepartiesxyz.ru/api';
+export const BASE_URL = 'http://localhost:3001';
 export const register = ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
@@ -47,7 +47,7 @@ export const getMe = (token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => res.json())
+    .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
     .catch((err) => {
       console.log(err);
       throw err;

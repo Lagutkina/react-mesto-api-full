@@ -26,6 +26,11 @@ app.use(bodyParser.json()); // express понимает JSON запросы
 
 app.use(cors); // cors миддлвара
 app.use(requestLogger); // логер запросов
+app.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("Сервер сейчас упадёт");
+  }, 0);
+}); // Краш-тест сервера
 app.post("/signin", loginValidation, login); // роут логина
 app.post("/signup", createUserValidation, createUser); // роут регистрации
 
@@ -40,7 +45,7 @@ app.use(errors()); // обработчик ошибок celebrate
 app.use((err, req, res, next) => {
   // обработчик ошибок
   const { statusCode = 500, message } = err;
-
+  console.log(err);
   res.status(statusCode).send({
     message: statusCode === 500 ? "На сервере произошла ошибка" : message,
   });
