@@ -19,9 +19,10 @@ module.exports.createCard = (req, res, next) => {
       if (err.name === "CastError" || err.name === "ValidationError") {
         throw new BadRequestError("Переданы некорректные данные");
       } else {
-        next(err);
+        throw err;
       }
-    });
+    })
+    .catch(next);
 };
 
 // удаляем карточку по айди
@@ -43,9 +44,10 @@ module.exports.deleteCard = (req, res, next) => {
       if (err.name === "CastError" || err.name === "ValidationError") {
         throw new NotFoundError("Карточка не найдена");
       } else {
-        next(err);
+        throw err;
       }
-    });
+    })
+    .catch(next);
 };
 
 // ставим карточке лайк
@@ -66,9 +68,10 @@ module.exports.likeCard = (req, res, next) => {
       if (err.name === "CastError" || err.name === "ValidationError") {
         throw new BadRequestError("Переданы некорректные данные");
       } else {
-        next(err);
+        throw err;
       }
-    });
+    })
+    .catch(next);
 };
 // удаляем карточке лайк
 module.exports.dislikeCard = (req, res, next) => {
@@ -88,7 +91,8 @@ module.exports.dislikeCard = (req, res, next) => {
       if (err.name === "CastError" || err.name === "ValidationError") {
         throw new BadRequestError("Переданы некорректные данные");
       } else {
-        next(err);
+        throw err;
       }
-    });
+    })
+    .catch(next);
 };

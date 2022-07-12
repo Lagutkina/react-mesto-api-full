@@ -30,9 +30,10 @@ module.exports.getUserById = (req, res, next) => {
       if (err.name === "CastError" || err.name === "ValidationError") {
         throw new BadRequestError("Переданы некорректные данные");
       } else {
-        next(err);
+        throw err;
       }
-    });
+    })
+    .catch(next);
 };
 
 // создаем юзера с именем и прочими штуками
@@ -57,9 +58,10 @@ module.exports.createUser = (req, res, next) => {
       } else if (err.code === 11000) {
         throw new ConflictError("Такой email уже зарегистрирован");
       } else {
-        next(err);
+        throw err;
       }
-    });
+    })
+    .catch(next);
 };
 
 // обновления профиля - name & about
@@ -81,9 +83,10 @@ module.exports.updateUser = (req, res, next) => {
       if (err.name === "CastError" || err.name === "ValidationError") {
         throw new BadRequestError("Переданы некорректные данные");
       } else {
-        next(err);
+        throw err;
       }
-    });
+    })
+    .catch(next);
 };
 
 // обновление аватара
@@ -105,9 +108,10 @@ module.exports.updateUserAvatar = (req, res, next) => {
       if (err.name === "CastError" || err.name === "ValidationError") {
         throw new BadRequestError("Переданы некорректные данные");
       } else {
-        next(err);
+        throw err;
       }
-    });
+    })
+    .catch(next);
 };
 
 // Логинимся
@@ -146,7 +150,8 @@ module.exports.getCurrentUser = (req, res, next) => {
       if (err.name === "CastError" || err.name === "ValidationError") {
         throw new BadRequestError("Переданы некорректные данные");
       } else {
-        next(err);
+        throw err;
       }
-    });
+    })
+    .catch(next);
 };
