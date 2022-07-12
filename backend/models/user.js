@@ -1,26 +1,26 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
-const validator = require("validator");
-const NotFoundError = require("../errors/not-found-err");
+const validator = require('validator');
+const NotFoundError = require('../errors/not-found-err');
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
     minlength: 2,
     maxlength: 30,
-    default: "Жак-Ив Кусто",
+    default: 'Жак-Ив Кусто',
   },
   about: {
     type: String,
     minlength: 2,
     maxlength: 30,
-    default: "Исследователь океана",
+    default: 'Исследователь океана',
   },
   avatar: {
     type: String,
     default:
-      "https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png",
+      'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
   },
   email: {
     type: String,
@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator: (value) => validator.isEmail(value),
-      message: () => "Некорректный формат данных", // фиг знает работает ли это
+      message: () => 'Некорректный формат данных', // фиг знает работает ли это
     },
   },
   password: {
@@ -39,21 +39,22 @@ const userSchema = new mongoose.Schema({
   },
 });
 // метод схемы для проверки логина
+// eslint-disable-next-line func-names
 userSchema.statics.findUserByCredentials = function (email, password) {
   return this.findOne({ email })
-    .select("+password") // даем взять хэш пароля для проверки логина
+    .select('+password') // даем взять хэш пароля для проверки логина
     .then((user) => {
       if (!user) {
         // юзер не найден
         return Promise.reject(
-          new NotFoundError("Неправильные почта или пароль")
+          new NotFoundError('Неправильные почта или пароль'),
         );
       }
       // юзер найден, сравниваем пароли
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
           return Promise.reject(
-            new NotFoundError("Неправильные почта или пароль")
+            new NotFoundError('Неправильные почта или пароль'),
           );
         }
 
@@ -61,4 +62,4 @@ userSchema.statics.findUserByCredentials = function (email, password) {
       });
     });
 };
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model('user', userSchema);

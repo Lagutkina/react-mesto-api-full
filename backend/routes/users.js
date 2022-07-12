@@ -1,26 +1,26 @@
-const router = require("express").Router();
+const router = require('express').Router();
 const {
   getUsers,
   getUserById,
   updateUser,
   updateUserAvatar,
   getCurrentUser,
-} = require("../controllers/users");
+} = require('../controllers/users');
 const {
   getUserByIdValidation,
   updateUserValidation,
   updateUserAvatarValidation,
-} = require("../middlewares/validation");
+} = require('../middlewares/validation');
 // возвращаем всех юзеров
-router.get("/", getUsers);
+router.get('/', getUsers);
 
 // обновления профиля - name & about
-router.patch("/me", updateUserValidation, updateUser);
+router.patch('/me', updateUserValidation, updateUser);
 
 // обновление аватара
-router.patch("/me/avatar", updateUserAvatarValidation, updateUserAvatar);
+router.patch('/me/avatar', updateUserAvatarValidation, updateUserAvatar);
 // возвращаем текущего юзера
-router.get("/me", getCurrentUser);
+router.get('/me', getCurrentUser);
 // возвращем юзера по айди
-router.get("/:userId", getUserByIdValidation, getUserById);
+router.get('/:userId', getUserByIdValidation, getUserById);
 module.exports = router;
